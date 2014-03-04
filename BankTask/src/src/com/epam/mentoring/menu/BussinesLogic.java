@@ -5,6 +5,7 @@ import java.util.List;
 
 import src.com.epam.mentoring.domain.Bank;
 import src.com.epam.mentoring.interfaces.IBank;
+import src.com.epam.mentoring.util.MoneyException;
 
 public class BussinesLogic {
 
@@ -28,9 +29,13 @@ public class BussinesLogic {
 	}
 
 	public String openAccount(IBank bank, int accountId,
-			IBank.IAccount.AccountType type, int money) {
+			IBank.IAccount.AccountType type, int money) throws MoneyException {
+		if(money>0){
 		bank.createAccount(accountId, type, money);
 		return "Success!!";		
+		} else{
+			throw new MoneyException("Money must be positive!");
+		}
 	}
 
 	public List<IBank.IAccount> getAllBankAccounts() {

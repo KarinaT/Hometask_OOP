@@ -8,13 +8,14 @@ import java.util.Scanner;
 import src.com.epam.mentoring.interfaces.IBank;
 import src.com.epam.mentoring.interfaces.IBank.IAccount;
 import src.com.epam.mentoring.menu.BussinesLogic;
+import src.com.epam.mentoring.util.MoneyException;
 
 public class KeyBoardLogic {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws MoneyException {
 		start(System.in, new BussinesLogic());
 	}
-	public static void start(InputStream is, BussinesLogic bussinesLogic) {
+	public static void start(InputStream is, BussinesLogic bussinesLogic) throws MoneyException {
 		Scanner scan = new Scanner(is);
 		String input = null;
 		while (true) {				
@@ -69,7 +70,7 @@ public class KeyBoardLogic {
 
 	} 
 	
-	private static void openBankAccount(Scanner scan, BussinesLogic bussinesLogic){
+	private static void openBankAccount(Scanner scan, BussinesLogic bussinesLogic) throws MoneyException{
 		IBank bank = null;
 		String input = null;
 		if(bank == null){			
