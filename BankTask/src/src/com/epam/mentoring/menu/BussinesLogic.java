@@ -31,7 +31,8 @@ public class BussinesLogic {
 	public String openAccount(IBank bank, int accountId,
 			IBank.IAccount.AccountType type, int money) throws MoneyException {
 		if(money>0){
-		bank.createAccount(accountId, type, money);
+		System.out.println("You've put " + money);
+		bank.createAccount(accountId, type, money);		
 		return "Success!!";		
 		} else{
 			throw new MoneyException("Money must be positive!");

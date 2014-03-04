@@ -82,7 +82,6 @@ public class KeyBoardLogic {
 			System.out.println("You've chosen " + IBank.IAccount.AccountType.CHECKING);
 			System.out.println("Please, put some money: ");
 			int money = Integer.parseInt(scan.nextLine());
-			System.out.println("You've put " + money);	
 			int accountId = bank.getAllAccounts().size();
 			try{
 			bussinesLogic.openAccount(bank, accountId, IBank.IAccount.AccountType.CHECKING, money);		
@@ -93,7 +92,6 @@ public class KeyBoardLogic {
 			System.out.println("You've chosen " + IBank.IAccount.AccountType.CREDIT);
 			System.out.println("Please, put some money: ");
 			int money = Integer.parseInt(scan.nextLine());
-			System.out.println("You've put " + money);		
 			int accountId = bank.getAllAccounts().size();
 			try{
 			bussinesLogic.openAccount(bank, accountId, IBank.IAccount.AccountType.CREDIT, money);
@@ -104,7 +102,6 @@ public class KeyBoardLogic {
 			System.out.println("You've chosen " + IBank.IAccount.AccountType.DEPOSIT);
 			System.out.println("Please, put some money: ");
 			int money = Integer.parseInt(scan.nextLine());
-			System.out.println("You've put " + money);	
 			int accountId = bank.getAllAccounts().size();
 			try{
 			bussinesLogic.openAccount(bank, accountId, IBank.IAccount.AccountType.DEPOSIT, money);			
