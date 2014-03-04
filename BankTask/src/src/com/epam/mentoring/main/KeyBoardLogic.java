@@ -12,10 +12,10 @@ import src.com.epam.mentoring.util.MoneyException;
 
 public class KeyBoardLogic {
 	
-	public static void main(String[] args) throws MoneyException {
+	public static void main(String[] args){
 		start(System.in, new BussinesLogic());
 	}
-	public static void start(InputStream is, BussinesLogic bussinesLogic) throws MoneyException {
+	public static void start(InputStream is, BussinesLogic bussinesLogic) {
 		Scanner scan = new Scanner(is);
 		String input = null;
 		while (true) {				
@@ -70,7 +70,7 @@ public class KeyBoardLogic {
 
 	} 
 	
-	private static void openBankAccount(Scanner scan, BussinesLogic bussinesLogic) throws MoneyException{
+	private static void openBankAccount(Scanner scan, BussinesLogic bussinesLogic) {
 		IBank bank = null;
 		String input = null;
 		if(bank == null){			
@@ -84,9 +84,9 @@ public class KeyBoardLogic {
 			int money = Integer.parseInt(scan.nextLine());
 			System.out.println("You've put " + money);	
 			int accountId = bank.getAllAccounts().size();
-			if(money>0){
+			try{
 			bussinesLogic.openAccount(bank, accountId, IBank.IAccount.AccountType.CHECKING, money);		
-			} else{
+			}catch(MoneyException ex){
 				System.out.println("Money can't be negative!");
 			}
 		} else if(input.equalsIgnoreCase("CREDIT")){
@@ -95,21 +95,20 @@ public class KeyBoardLogic {
 			int money = Integer.parseInt(scan.nextLine());
 			System.out.println("You've put " + money);		
 			int accountId = bank.getAllAccounts().size();
-			if(money>0){
+			try{
 			bussinesLogic.openAccount(bank, accountId, IBank.IAccount.AccountType.CREDIT, money);
-		} else{
-			System.out.println("Money can't be negative!");
-		}
-		}else if(input.equalsIgnoreCase("DEPOSIT")){
+			}catch(MoneyException ex){
+				System.out.println("Money can't be negative!");
+			}
+		} else if(input.equalsIgnoreCase("DEPOSIT")){
 			System.out.println("You've chosen " + IBank.IAccount.AccountType.DEPOSIT);
 			System.out.println("Please, put some money: ");
 			int money = Integer.parseInt(scan.nextLine());
 			System.out.println("You've put " + money);	
 			int accountId = bank.getAllAccounts().size();
-			if(money>0){
-			bussinesLogic.openAccount(bank, accountId, IBank.IAccount.AccountType.DEPOSIT, money);
-			}
-			else{
+			try{
+			bussinesLogic.openAccount(bank, accountId, IBank.IAccount.AccountType.DEPOSIT, money);			
+			}catch(MoneyException ex){
 				System.out.println("Money can't be negative!");
 			}
 		} else{
