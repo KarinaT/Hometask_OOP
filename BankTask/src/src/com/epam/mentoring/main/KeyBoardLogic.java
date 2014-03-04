@@ -12,27 +12,30 @@ import src.com.epam.mentoring.util.MoneyException;
 
 public class KeyBoardLogic {
 	
+	private static Scanner scan;
+	static BussinesLogic bussinesLogic = new BussinesLogic();
+	
 	public static void main(String[] args){
-		start(System.in, new BussinesLogic());
+		start(System.in);
 	}
-	public static void start(InputStream is, BussinesLogic bussinesLogic) {
-		Scanner scan = new Scanner(is);
+	public static void start(InputStream is) {
+		scan = new Scanner(is);
 		String input = null;
 		while (true) {				
 			printOperations();
 			input = scan.nextLine();
 			switch (input) {
-			case "1": openBankAccount(scan, bussinesLogic);break;
-			case "2": getAllAccounts(scan, bussinesLogic);break;
+			case "1": openBankAccount();break;
+			case "2": getAllAccounts();break;
 			case "Q": System.out.println("Good bye!"); return;
 			default:  System.out.println("Invalid input!"); break;
 			}
 		}
 	}
 	
-	private static IBank getBank(Scanner scan, BussinesLogic bussinesLogic){
+	private static IBank getBank(){
 		String input = null; 
-		printAllBanks(bussinesLogic);
+		printAllBanks();
 		IBank bank = null;
 		while (bank==null) {
 			input = scan.nextLine();
@@ -50,7 +53,7 @@ public class KeyBoardLogic {
 		return bank;
 	}
 	
-	private static void printAllBanks(BussinesLogic bussinesLogic) {
+	private static void printAllBanks() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("==== Please, choose a bank.");
 		int count = 1;
@@ -70,13 +73,13 @@ public class KeyBoardLogic {
 
 	} 
 	
-	private static void openBankAccount(Scanner scan, BussinesLogic bussinesLogic) {
+	private static void openBankAccount() {
 		IBank bank = null;
 		String input = null;
 		if(bank == null){			
-			bank = getBank(scan, bussinesLogic);			
+			bank = getBank();			
 		}
-		printAllAccounts(bussinesLogic);
+		printAllAccounts();
 		input = scan.nextLine();
 		if(input.equalsIgnoreCase("CHECKING")){
 			System.out.println("You've chosen " + IBank.IAccount.AccountType.CHECKING);
@@ -113,11 +116,11 @@ public class KeyBoardLogic {
 		}
 	}
 	
-	private static void printAllAccounts(BussinesLogic bussinesLogic) {
+	private static void printAllAccounts() {
 		System.out.println("Please, enter "+IBank.IAccount.AccountType.CREDIT+" to choose " + IBank.IAccount.AccountType.CREDIT + " account type, "+IBank.IAccount.AccountType.CHECKING+" for " + IBank.IAccount.AccountType.CHECKING + " account type or "+IBank.IAccount.AccountType.DEPOSIT+" for " + IBank.IAccount.AccountType.DEPOSIT +  " account type");	 
 	}
 	
-	private static void getAllAccounts(Scanner scan, BussinesLogic bussinesLogic) {
+	private static void getAllAccounts() {
 		List<IAccount> accounts = new ArrayList<>();
 		accounts = bussinesLogic.getAllBankAccounts();
 		if(accounts.size()>0){

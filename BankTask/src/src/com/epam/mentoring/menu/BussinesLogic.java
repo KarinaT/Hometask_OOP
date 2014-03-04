@@ -20,7 +20,7 @@ public class BussinesLogic {
 	}
 
 	public IBank getBank(String bankName) {
-		for (IBank bank : this.banks) {
+		for (IBank bank : banks) {
 			if (bank.getName().equalsIgnoreCase(bankName)) {
 				return bank;
 			}
@@ -41,7 +41,7 @@ public class BussinesLogic {
 
 	public List<IBank.IAccount> getAllBankAccounts() {
 		List<IBank.IAccount> result = new ArrayList<>();
-		for (IBank bank : this.banks) {
+		for (IBank bank : banks) {
 			result.addAll(bank.getAllAccounts());
 		}
 		return result;
